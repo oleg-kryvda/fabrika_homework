@@ -13,7 +13,7 @@ public class HomeWork16
 		int iNumb = ReadNumb();
 		System.out.println("Entered value: " + iNumb);
 		int dayW=(iNumb%7);
-		System.out.println (dayW);
+		System.out.print("The entered number corresponds to: ");
 		switch (dayW)
 		{
 			case 1: System.out.println ("Wednesday");
