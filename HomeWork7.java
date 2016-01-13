@@ -7,20 +7,12 @@ public class HomeWork7
 {
 	public static void main(String[] args) throws Exception
 	{
-		System.out.println("Enter the temperature in Celsius:");
-		int iNumb = ReadNumb();
+		String sNumb=args[0];
+		int iNumb=Integer.parseInt(sNumb);
 		System.out.println("Entered value: " + iNumb);
 		
 		System.out.print("Corresponds to the temperature in Fahrenheit:");
 		System.out.println((iNumb*9)/5+32);
 	
-	}
-	public static int ReadNumb() throws Exception
-	{
-		BufferedReader reader  = new BufferedReader(new InputStreamReader(System.in));
-		String sNumb = reader.readLine();
-		//преобразовываем переменную из строковой в числовую
-		int Numb = Integer.parseInt(sNumb);
-		return Numb;
 	}
 }
