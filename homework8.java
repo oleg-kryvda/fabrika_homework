@@ -5,7 +5,6 @@
 пути и среднюю стоимость 1 км пути.
 
 */
-import java.io.*;
 public class homework8
 {
 	public static void main(String[] args) throws Exception
@@ -17,9 +16,11 @@ public class homework8
 		int litr=Integer.parseInt(sLitr);
 		double price=Double.parseDouble(sPrice);
 		
-			
-		System.out.println("\nAverage fuel consumption per 100 km traveled ways : " + (litr*100/km));
-		System.out.println("The average cost of one km : " + (litr*price/km));
-	
+		System.out.println("********************************************************");
+		System.out.println("Average fuel consumption per 100 km traveled ways : " + (litr*100/km) + " litr/100km");
+		System.out.print("The average cost of one km....................... : ");
+		System.out.printf("%.2f", litr*price/km); // подсмотрел как сделать красиво, как работает еще не понял 
+		System.out.print(" Grh/km.");
+		System.out.println("\n********************************************************");
 	}
 }
