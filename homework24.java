@@ -10,29 +10,30 @@ public class homework24
 	{
 		String SMonth=args[0];
 		int month = Integer.parseInt(SMonth);
+		String monhtName;
 		
 		switch(month)
 		{
-			case 12:
-			case 1:
-			case 2:
-				System.out.print("Winter");
+			case 12: monhtName = "December";
+			case 1:	monhtName = "January";
+			case 2:	monhtName = "February";
+				System.out.print(monhtName + " - Winter");
 				break; 
 
-			case 3:
-			case 4:
-			case 5:
-				System.out.print("Spring");
+			case 3:	monhtName = "March";
+			case 4:	monhtName = "April";
+			case 5: monhtName = "May";
+				System.out.print(monhtName + " - Spring");
 				break;
-			case 6:
-			case 7:
-			case 8:
-				System.out.print("Summer");
+			case 6:	monhtName = "June";
+			case 7:	monhtName = "July";
+			case 8:	monhtName = "August";
+				System.out.print(monhtName + " - Summer");
 				break;
-			case 9:
-			case 10:
-			case 11:
-				System.out.print("Autumn");
+			case 9:	monhtName = "September";
+			case 10: monhtName = "October";
+			case 11: monhtName = "November";
+				System.out.print(monhtName + " - Autumn");
 				break;
 		}
 		
