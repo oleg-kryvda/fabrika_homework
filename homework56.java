@@ -1,7 +1,10 @@
-import java.util.Arrays;
+import java.util.*;
 import java.util.Comparator;
 
+
+
 public class homework56	{
+
     public static void main(String[] args)	{
         Employee[] employee = new Employee[11];
         employee[0] = new Employee(12345, "Viktor", "Sotov", 999.0);
@@ -10,25 +13,28 @@ public class homework56	{
         employee[3] = new Employee(91234, "Konstantin", "Genchevskiy", 1000.0);
         employee[4] = new Employee(0, "KAREEM", "KHALIL", 500.0);
         employee[5] = new Employee(0, "RONALD", "MONKS", 1000.0);
-        //FabrikaManager[] fabrikaManagers = new FabrikaManager[5];
         employee[6] = new FabrikaManager(23456, "Ol'ga ", "Dovganich", 1000.0);
         employee[7] = new FabrikaManager(34567, "Gleb", "Svyazhin", 1000.0);
         employee[8] = new FabrikaManager(67891, "Nikolay", "Pashkovskiy", 1000.0);
         employee[9] = new FabrikaManager(78912, "Andrey", "Sil'chuk", 1000.0);
         employee[10] = new FabrikaManager(89123, "Dmitriy", "Vlayev", 1000.0);
 
-        int sort = 3;		
-		switch (sort){
-            case 1: Arrays.sort(employee, new SortedByINN());
-                    break;
-            case 2: Arrays.sort(employee, new SortedBySurname()); 	//sort by name
-					Arrays.sort(employee, new SortedByName());
-					break;
-            case 3: Arrays.sort(employee, new SortedByName()); 		// sort by surname
-					Arrays.sort(employee, new SortedBySurname());
-					break;
-            case 4: Arrays.sort(employee, new SortedBySalary());
-					break;
+        //Arrays.sort(employee);
+
+        int sort = 3;
+        switch (sort){
+            case 1: 
+                Arrays.sort(employee, new SortedByINN());
+                break;
+            case 2:
+                Arrays.sort(employee, new SortedByName().thenComparing(new SortedBySurname())); //sort by name
+                break;
+            case 3: 
+                Arrays.sort(employee, new SortedBySurname().thenComparing(new SortedByName())); // sort by surname
+                break;
+            case 4:
+                Arrays.sort(employee, new SortedBySalary());
+                break;
         }
 
         System.out.println("**-----Report the total salaries list-----**");
@@ -81,7 +87,7 @@ public class homework56	{
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-class Employee	{
+class Employee implements Comparable{
     private int INN;
     private String name;
     private String surname;
@@ -102,6 +108,20 @@ class Employee	{
     //public void setSalary(double salary)	{this.salary = salary;}
     public double getSalary()	{return salary;}
 
+
+    public int compareTo(Object obj)  {
+        Employee tmp = (Employee)obj;
+        if(this.INN < tmp.INN) {
+		  /* текущее меньше полученного */
+            return -1;
+        }
+        else if(this.INN > tmp.INN){
+		  /* текущее больше полученного */
+            return 1;
+        }
+		/* текущее равно полученному */
+        return 0;
+    }
     @Override
     public String toString() {
         return getINN() + ", \t" + getName() + " " + getSurname() + ", \t " + getSalary() ;
@@ -121,18 +141,14 @@ class FabrikaManager extends Employee 	{
         this.bonus = bonus;
     }
 
-    //public void setBonus(double bonus){this.bonus = bonus;}
     public double getBonus(){
         return bonus;
     }
 
-    //public void setINN(int inn)	{this.INN = inn;}
     public int getINN()	{return super.getINN();}
-    // public void setName(String name)	{this.name = name;}
     public String getName()	{return super.getName();}
-    //public void setSurname(String surname)	{this.surname = surname;}
     public String getSurname()	{return super.getSurname();}
-    //public void setSalary(double salary)	{this.salary = salary;}
+
     public double getSalary()	{
         return super.getSalary() + bonus;
     }
@@ -144,19 +160,19 @@ class FabrikaManager extends Employee 	{
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 class SortedByINN implements Comparator<Employee> {
     public int compare(Employee obj1, Employee obj2){
-         int inn1 = obj1.getINN();
-         int inn2 = obj2.getINN();
-         if(inn1 > inn2) {
-             return 1;
-         }
-         else if(inn1 < inn2) {
-             return -1;
-         }
-         else {
-             return 0;
-         }
-     }
- }
+        int inn1 = obj1.getINN();
+        int inn2 = obj2.getINN();
+        if(inn1 > inn2) {
+            return 1;
+        }
+        else if(inn1 < inn2) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 class SortedBySalary implements Comparator<Employee> {
     public int compare(Employee obj1, Employee obj2){
